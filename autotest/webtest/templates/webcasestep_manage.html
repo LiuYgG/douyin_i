@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>产品自动化平台</title>
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body role="document">
+   <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container">
+            <a href="" class="navbar-brand">&nbsp;</a>
+            <ul class="nav justify-content-center"></ul>
+            <ul class="nav justify-content-end">
+                <li class="nav-link">
+                    <a href="#" style="color: white">{{ user }}</a>
+                </li>
+                <li class="nav-link">
+                    <a href="/logout/" style="color: white">退出</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- bug列表 -->
+    <div class="row" style="padding-top: 20px">
+        <div class="col-md-11">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>ID</td>
+                        <td>所属产品</td>
+                        <td>所属用例</td>
+                        <td>步骤</td>
+                        <td>定位方式</td>
+                        <td>控件元素</td>
+                        <td>操作方法</td>
+                        <td>测试数据</td>
+                        <td>验证数据</td>
+                        <td>测试结果</td>
+                        <td>时间</td>
+                    </tr>
+                </thead>
+                {% for webcasestep in webcasesteps  %}
+
+                    <tr>
+                        <td>{{ webcasestep.id }}</td>
+                        <td>{{ webcasestep.Webcase.Product.productname }}</td>
+                        <td>case{{ webcasestep.Webcase.id }}:{{ webcasestep.Webcase.webcasename }}</td>
+                        <td>{{ webcasestep.webteststep }}:{{ webcasestep.webtestobjectname }}</td>
+                        <td>{{ webcasestep.webfindmethod }}</td>
+                        <td>{{ webcasestep.webevelment }}</td>
+                        <td>{{ webcasestep.weboptmethod }}</td>
+                        <td>{{ webcasestep.webtestdata }}</td>
+                        <td>{{ webcasestep.webassertdata }}</td>
+                        <td>{% if webcasestep.webtestresult == 1 %}
+                                <a style="color: #0a8b2a"> {{ webcasestep.webtestresult }}</a>
+                                {% else %}
+                                <a style="color: #ee0c22"> {{ webcasestep.webtestresult }}</a>
+                                {% endif %}
+                        </td>
+                        <td>{{ webcasestep.create_time }}</td>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
