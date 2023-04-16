@@ -57,16 +57,16 @@ class DarenProfiles():
         nicke_name_elements = self.d.find_elements(By.CLASS_NAME, 'list-table-info-right-name__nickname')
         # 循环次数定义
         count = int(input("请输入你要爬取的人数: "))
+        time.sleep(3)
         # 循环获取
         for i in range(len(nicke_name_elements)):
             if i == count:
                 break
+
             try:
                 self.daren = nicke_name_elements[i].click()
-                i += 1
                 # 获取所有打开的浏览器窗口
                 handle_tab_all = self.d.window_handles
-                # print(handle_tab_all)
                 # 获取当前浏览器的窗口
                 handle_tab_singe = self.d.current_window_handle
                 # print("当前浏览器窗口" + handle_tab_singe)
@@ -95,20 +95,32 @@ class DarenProfiles():
                         cancel.click()
 
                 except Exception as s:
-                    print(f'发送邀约按钮：{s}')
+                    print(f'发送邀约异常错误信息：{s}')
 
-                time.sleep(3)
+                time.sleep(5)
                 '''
                  联系方式相关操作
                 '''
                 try:
                     contact_info_block = self.d.find_element(By.XPATH, profiles_page.contact_info_block)
-                    contact_hide_btn = self.d.find_elements(By.CLASS_NAME, 'img-default-wrapper')
-                    for h in range(len(contact_hide_btn)):
-                        contact_hide_btn[h].click()
-                    print(contact_info_block)
+                    if contact_info_block is not None:
+                        contact_hide_btn = self.d.find_elements(By.CLASS_NAME, 'img-default-wrapper  ')
+                        # time.sleep(3)
+                        for h in range(len(contact_hide_btn)):
+                            h = 3
+                            time.sleep(2)
+                            contact_hide_btn[h].click()
+                        print(contact_info_block.text)
+                        print('-'*30)
+                    else:
+                        print("此用户没有联系方式: ", self.d.find_element(By.XPATH, profiles_page.daren_name).text)
+                        time.sleep(2)
+                        # 关闭窗口
+                        self.d.close()
+                        self.d.switch_to.window((handle_tab_all[0]))
                 except Exception as c :
-                    print(f"异常错误信息: {c}")
+                    print(f"联系方式异常错误信息: {c}")
+
                 time.sleep(3)
                 daren_name = self.d.find_element(By.XPATH, profiles_page.daren_name).text # 达人的昵称
                 daren_fans = self.d.find_element(By.XPATH, profiles_page.daren_fans).text # 达人的粉丝数
@@ -125,7 +137,7 @@ class DarenProfiles():
                                        '网址': self.d.current_url})
 
                 time.sleep(1)
-                print(f"已联系: [ {i} ]个")
+                print(f"已联系: [ {i+1} ]个")
                 # 关闭窗口
                 self.d.close()
                 self.d.switch_to.window((handle_tab_all[0]))
@@ -134,10 +146,10 @@ class DarenProfiles():
                 while True:
                     self.d.execute_script("window.scrollBy(0, 800);")
                     break
-                time.sleep(2)
+                time.sleep(5)
 
             except Exception as e:
-                print(f'信息出错: {e}')
+                print(f'总循环错误信息: {e}')
 
 
 
