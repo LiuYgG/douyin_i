@@ -14,6 +14,7 @@ class MainWindow(QMainWindow):
         self.initUI()
 
     def initUI(self):
+
         # 浏览器路径标签和输入框
         self.browser_path_label = QLabel('浏览器路径：', self)
         self.browser_path_label.move(20, 20)
@@ -36,10 +37,19 @@ class MainWindow(QMainWindow):
         self.open_browser_button.move(150, 100)
         self.open_browser_button.clicked.connect(self.open_browser)
 
+        # 创建设置运行脚本次数标签和输入框
+        self.script_count_label = QLabel('设置脚本运行次数：', self)
+        self.script_count_label.move(50,250)
+        self.script_count_label = QLineEdit(self)
+        self.script_count_label.move(160,255)
+        self.script_count_label.resize(50, 20)
+
         # 运行脚本按钮
         self.run_script_button = QPushButton('运行脚本', self)
-        self.run_script_button.move(250, 100)
+        self.run_script_button.move(250, 250)
         self.run_script_button.clicked.connect(self.execute_script)
+
+
 
         self.show()
 
