@@ -1,0 +1,3 @@
+https://buyin.jinritemai.com/dashboard/servicehall/daren-square # 达人广场
+
+https://buyin.jinritemai.com/mpa/account/institution-login?log_out=1&type=23&role_child_type=2&target_url=&new_enter_from=institution_role_select # 登录页面
