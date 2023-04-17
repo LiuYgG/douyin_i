@@ -30,7 +30,7 @@ class DarenProfiles():
         # 服务器地址
         self.options.add_experimental_option("debuggerAddress", "127.0.0.1:5247")
         # 打开浏览器
-        self.driver_path = 'drivers/112.0.5615.50_chromedriver.exe'
+        self.driver_path = 'drivers/111.0.5563.64_chromedriver.exe'
         self.d = webdriver.Chrome(executable_path=self.driver_path, options=self.options)
         self.data_list = []
 
@@ -57,12 +57,11 @@ class DarenProfiles():
         nicke_name_elements = self.d.find_elements(By.CLASS_NAME, 'list-table-info-right-name__nickname')
         # 循环次数定义
         count = int(input("请输入你要爬取的人数: "))
-        time.sleep(3)
+        # time.sleep(3)
         # 循环获取
         for i in range(len(nicke_name_elements)):
             if i == count:
                 break
-
             try:
                 self.daren = nicke_name_elements[i].click()
                 # 获取所有打开的浏览器窗口
@@ -89,6 +88,9 @@ class DarenProfiles():
                         last_add_commodity = self.d.find_element(By.XPATH, profiles_page.last_add_commodity)
                         last_add_commodity.click()
                         time.sleep(3)
+                        # 发送邀约
+                        # send_m = self.d.find_element(By.XPATH, profiles_page.send_me)
+                        # send_m.click()
 
                         # 点击取消
                         cancel = self.d.find_element(By.XPATH, profiles_page.cancel)

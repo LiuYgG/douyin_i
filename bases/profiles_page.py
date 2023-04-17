@@ -13,7 +13,7 @@ contact_copy_btn = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[7]/div/div[1
 
 # 发送合作邀约窗口相关元素
 send_message = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[6]/div[1]/button/span' # 发送邀约按钮
-send_messages= '/html/body/div[4]/div/div[2]/div/div/div[3]/div/div[2]/button[1]/span' # 发送邀约
+send_me = '/html/body/div[4]/div/div[2]/div/div/div[3]/div/div[2]/button[1]/span' # 发送邀约
 add_commodity = '/html/body/div[4]/div/div[2]/div/div/div[2]/div/div/form/div[1]/div[2]/div[1]/button/span' # 点击添加商品
 last_add_commodity = '/html/body/div[3]/div/div[2]/div/div/div[2]/div/div/form/div[1]/div[2]/div[2]/span[1]' # 点击上次邀约商品
 cancel = '/html/body/div[3]/div/div[2]/div/div/div[3]/div/div[2]/button[2]/span' # 取消
