@@ -50,19 +50,18 @@ class DarenProfiles():
     def get_daren_info(self):
 
         # 达人列表
-        # self.d.get('https://buyin.jinritemai.com/dashboard/servicehall/daren-square')
-        # 循环次数定义
+        self.d.get('https://buyin.jinritemai.com/dashboard/servicehall/daren-square')
         nicke_name_elements = self.d.find_elements(By.CLASS_NAME, 'list-table-info-right-name__nickname')
         time.sleep(3)
-        count = int(input("请输入你要爬取的人数: "))
+        # count = int(input("请输入你要爬取的人数: "))
         # 循环获取
         for i in range(len(nicke_name_elements)):
-            if i == count:
-                break
+            # if i == count:
+            #     break
             try:
 
                 self.daren = nicke_name_elements[i].click()
-                count += 1
+                # count += 1
                 # 获取所有打开的浏览器窗口
                 handle_tab_all = self.d.window_handles
                 # 获取当前浏览器的窗口
