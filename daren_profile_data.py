@@ -20,7 +20,6 @@ from bases import profiles_page
 class DarenProfiles():
 
     def __init__(self):
-
         # 创建一个 workbook 对象
         self.workbook = openpyxl.Workbook()
         # 创建一个 worksheet 对象
