@@ -45,7 +45,7 @@ class DarenProfiles():
         self.worksheet.cell(row=1, column=1, value='姓名')
         self.worksheet.cell(row=1, column=2, value='联系方式')
         self.worksheet.cell(row=1, column=3, value='粉丝数')
-        self.worksheet.cell(row=1, column=6, value='网址')
+        self.worksheet.cell(row=1, column=4, value='网址')
 
     def get_daren_info(self):
 
@@ -60,9 +60,9 @@ class DarenProfiles():
             if i == count:
                 break
             try:
-                count += 1
-                self.daren = nicke_name_elements[i].click()
 
+                self.daren = nicke_name_elements[i].click()
+                count += 1
                 # 获取所有打开的浏览器窗口
                 handle_tab_all = self.d.window_handles
                 # 获取当前浏览器的窗口
