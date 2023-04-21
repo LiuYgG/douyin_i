@@ -1,26 +1,36 @@
-# -*- coding:utf-8 -*-
 """
 # FileName    : profiles_page.py
 # CreateTime  : 2023 年 04 月 16 日
-# Version     : 
-# Description :
+# Version     : 0.0.1
+# Description : 达人主页里的元素
 """
+# 达人的昵称[1]
+profiles_daren_name_class = 'daren-overview-base-nameblock__nickname'
+# 达人的昵称[2]
+profiles_daren_name_xpath = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[2]/div'
 
-# 联系方式窗口的相关元素
-contact_info_block = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[7]/div' # 联系方式窗口
-contact_hide_btn = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[7]/div/div[1]/div[2]/div/img' # 隐藏按钮
-contact_copy_btn = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[7]/div/div[1]/span' # 复制按钮
+# 达人的粉丝数[1]
+profiles_daren_fans_class = 'daren-overview-base-traitblock'
+# 达人的粉丝数[2]
+profiles_daren_fans_xpath = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[3]'
 
-# 发送合作邀约窗口相关元素
-agree_or_wait_btn = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[6]/div[1]/span/button/span' # 已同意按钮 or 待回复
-send_message = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[6]/div[1]/button/span' # 发送邀约按钮
-send_me = '/html/body/div[4]/div/div[2]/div/div/div[3]/div/div[2]/button[1]/span' # 窗口-发送邀约
-add_commodity = '/html/body/div[4]/div/div[2]/div/div/div[2]/div/div/form/div[1]/div[2]/div[1]/button/span' # 窗口-点击添加商品
-last_add_commodity = '/html/body/div[3]/div/div[2]/div/div/div[2]/div/div/form/div[1]/div[2]/div[2]/span[1]' # 窗口-点击上次邀约商品
-cancel = '/html/body/div[3]/div/div[2]/div/div/div[3]/div/div[2]/button[2]/span' # 窗口-取消
 
-# 达人个人资料的相关元素
-daren_name = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[2]/div' # 达人的昵称
-daren_fans = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[3]/div[1]' # 达人的粉丝数
-daren_type = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[3]/div[3]' # 达人的标签
-daren_city = 'daren-overview-base-traitblock__city' # 达人的地址
+# 达人发送邀约按钮[1]
+profiles_send_class = 'contact-btn-container-button'
+# 达人发送邀约按钮[2]
+profiles_send_xpath = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[6]/div[1]/button'
+# 达人禁止邀约按钮[1]
+profiles_send_disabled_class = 'auxo-tooltip-disabled-compatible-wrapper'
+# 达人禁止邀约按钮[2]
+
+
+# 达人联系方式窗口
+profiles_message_box_xpath = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[7]/div'
+# 达人联系方式隐藏按钮[1]
+profiles_message_hide_class = 'img-default-wrapper '
+# 达人联系方式隐藏按钮[2]
+profiles_message_hide_xpath = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[7]/div/div[1]/div[2]/div/img'
+# 达人联系方式复制按钮[1]
+profiles_message_copy_class = 'index__copy___MKQUp'
+# 达人联系方式复制按钮[2]
+profiles_message_copy_xpath = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[7]/div/div[1]/span'
