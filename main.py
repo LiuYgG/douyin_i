@@ -1,96 +1,59 @@
 import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QFileDialog
 
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
 
-class MainWindow(QMainWindow):
+class MyApp(QWidget):
     def __init__(self):
         super().__init__()
-
-        # 初始化UI界面
         self.initUI()
 
     def initUI(self):
-        # 设置窗口标题和大小
-        self.setWindowTitle('浏览器自动化测试工具')
-        self.setFixedSize(500, 300)
+        # 创建标签和输入框
+        browser_label = QLabel('浏览器地址:', self)
+        browser_label.move(20, 20)
+        self.browser_edit = QLineEdit(self)
+        self.browser_edit.move(100, 20)
+        self.browser_edit.resize(280, 25)
 
-        # 创建浏览器路径的输入框和选择浏览器按钮
-        self.browser_path_label = QLabel('浏览器路径:', self)
-        self.browser_path_label.move(50, 50)
+        # 创建选择文件的按钮
+        file_button = QPushButton('选择文件', self)
+        file_button.move(20, 60)
+        file_button.clicked.connect(self.showFileDialog)
 
-        self.browser_path_input = QLineEdit(self)
-        self.browser_path_input.move(150, 50)
-        self.browser_path_input.setFixedWidth(250)
+        # 创建保存地址标签和显示选择文件的输入框
+        save_label = QLabel('保存地址:', self)
+        save_label.move(20, 100)
+        self.save_edit = QLineEdit(self)
+        self.save_edit.move(100, 100)
+        self.save_edit.resize(280, 25)
 
-        self.browser_path_select_button = QPushButton('选择浏览器', self)
-        self.browser_path_select_button.move(410, 50)
-        self.browser_path_select_button.clicked.connect(self.selectBrowserPath)
+        # 创建运行按钮
+        run_button = QPushButton('运行', self)
+        run_button.move(20, 140)
+        run_button.clicked.connect(self.runScript)
 
-        # 创建打开浏览器的按钮
-        self.open_browser_button = QPushButton('打开浏览器', self)
-        self.open_browser_button.move(50, 100)
-        self.open_browser_button.clicked.connect(self.openBrowser)
+        # 设置窗口大小和标题
+        self.setGeometry(300, 300, 400, 200)
+        self.setWindowTitle('PyQt5界面')
 
-        # 创建执行次数的输入框和执行脚本的按钮
-        self.run_times_label = QLabel('执行次数:', self)
-        self.run_times_label.move(50, 150)
+        self.show()
 
-        self.run_times_input = QLineEdit(self)
-        self.run_times_input.move(150, 150)
-        self.run_times_input.setFixedWidth(250)
-
-        self.run_script_button = QPushButton('执行脚本', self)
-        self.run_script_button.move(410, 150)
-        self.run_script_button.clicked.connect(self.runScript)
-
-        # 创建选择Excel保存路径的按钮
-        self.excel_path_label = QLabel('Excel保存路径:', self)
-        self.excel_path_label.move(50, 200)
-
-        self.excel_path_input = QLineEdit(self)
-        self.excel_path_input.move(150, 200)
-        self.excel_path_input.setFixedWidth(250)
-
-        self.excel_path_select_button = QPushButton('选择路径', self)
-        self.excel_path_select_button.move(410, 200)
-        self.excel_path_select_button.clicked.connect(self.selectExcelPath)
-
-    def selectBrowserPath(self):
-        # 弹出选择文件对话框
-        file_dialog = QFileDialog()
-        file_dialog.setFileMode(QFileDialog.ExistingFile)
-        file_dialog.setNameFilter('Executable files (*.exe)')
-        if file_dialog.exec_():
-            selected_file = file_dialog.selectedFiles()[0]
-            self.browser_path_input.setText(selected_file)
-
-    def openBrowser(self):
-        # 获取浏览器路径
-        browser_path = self.browser_path_input.text()
-
-        # 打开浏览器
-        browser_open = self.open_browser_button
+    def showFileDialog(self):
+        # 打开文件选择对话框
+        filename, _ = QFileDialog.getOpenFileName(self, "选择文件", "", "All Files (*);;Python Files (*.py)")
+        if filename:
+            self.save_edit.setText(filename)
 
     def runScript(self):
-        # 获取执行次数
-        run_times = int(self.run_times_input.text())
+        # 获取浏览器地址和保存地址，并执行脚本
+        browser_path = self.browser_edit.text()
+        save_path = self.save_edit.text()
+        print('浏览器地址:', browser_path)
+        print('保存地址:', save_path)
+        # TODO: 在此处添加执行脚本的代码
 
-        # 执行脚本
-        # TODO
-
-    def selectExcelPath(self):
-        # 弹出选择文件对话框
-        file_dialog = QFileDialog()
-        file_dialog.setFileMode(QFileDialog.AnyFile)
-        file_dialog.setNameFilter('Excel files (*.xlsx)')
-        if file_dialog.exec_():
-            selected_file = file_dialog.selectedFiles()[0]
-            self.excel_path_input.setText(selected_file)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
+    ex = MyApp()
     sys.exit(app.exec_())

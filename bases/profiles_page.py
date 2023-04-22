@@ -34,3 +34,11 @@ profiles_message_hide_xpath = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[7
 profiles_message_copy_class = 'index__copy___MKQUp'
 # 达人联系方式复制按钮[2]
 profiles_message_copy_xpath = '//*[@id="app"]/div/div/div[1]/div[1]/div[2]/div[7]/div/div[1]/span'
+
+
+# 达人联系方式弹窗提示[1]
+profile_toast_window_class = 'auxo-modal-body'
+# 达人联系方式弹窗提示-查看按钮[1]
+profile_toast_window_sure_xpath = '/html/body/div[4]/div/div[2]/div/div[2]/div/div/div[2]/button[2]'
+# 达人联系方式弹窗提示-取消按钮[1]
+profile_toast_window_cancel_xpath = '/html/body/div[4]/div/div[2]/div/div[2]/div/div/div[2]/button[1]'
