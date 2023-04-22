@@ -42,7 +42,7 @@ class DarenProfiles():
 
     def run(self):
         self.setup_worksheet()
-        self.get_daren_info()
+        self.get_daren_info(20, 0)
         self.write_to_worksheet()
         self.save_workboot()
 
@@ -54,11 +54,11 @@ class DarenProfiles():
         self.worksheet.cell(row=1, column=3, value='联系方式')
         self.worksheet.cell(row=1, column=4, value='网址')
 
-    def get_daren_info(self):
+    def get_daren_info(self, count=0, start_index=0):
 
         nicke_name_elements = self.d.find_elements(By.CLASS_NAME, daren_square_page.daren_square_name_class)
-        count = int(input("请输入你要的人数: "))
-        start_index = int(input("请输入要开始的位置："))
+        count = count
+        start_index = start_index
         print("开始执行程序")
         # 循环获取
         for n in range(start_index, len(nicke_name_elements)):
@@ -223,6 +223,7 @@ class DarenProfiles():
                 else:
                     print(f'总循环错误信息: {e}')
 
+        return count, start_index
 
     def write_to_worksheet(self):
         # 写入 Excel 表格
