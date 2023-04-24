@@ -101,11 +101,11 @@ class DarenProfiles():
                                     message_toast_window_sure = self.d.find_element(By.XPATH, profiles_page.profile_toast_window_sure_xpath)
                                     message_toast_window_sure.click()
                                     print("查看联系方式提示弹窗已点击查看")
-                                if 'no such element: Unable to locate element: {"method":"css selector","selector":".auxo-modal-body"}' in str(w):
+                                elif 'no such element: Unable to locate element: {"method":"css selector","selector":".auxo-modal-body"}' in str(w):
                                     message_toast_window_sure.click()
-                                if 'stale element reference: element is not attached to the page document' in str(w):
+                                elif 'stale element reference: element is not attached to the page document' in str(w):
                                     pass
-                                if "cannot access local variable 'message_toast_window_sure' where it is not associated with a value" in str(w):
+                                elif "cannot access local variable 'message_toast_window_sure' where it is not associated with a value" in str(w):
                                     continue
                                 print(f'查看方式提示弹窗异常信息：{w}')
 
