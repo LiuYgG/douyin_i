@@ -94,32 +94,23 @@ class DarenProfiles():
                             try:
                                 message_toast_window = self.d.find_element(By.CLASS_NAME, profiles_page.profile_toast_window_class)
                                 print("查看联系方式提示弹窗出现")
+                                if message_toast_window < 0:
+                                    print("无弹窗出现")
+                            except Exception as w:
                                 if message_toast_window:
                                     message_toast_window_sure = self.d.find_element(By.XPATH, profiles_page.profile_toast_window_sure_xpath)
                                     message_toast_window_sure.click()
                                     print("查看联系方式提示弹窗已点击查看")
-                            except Exception as w:
                                 if 'no such element: Unable to locate element: {"method":"css selector","selector":".auxo-modal-body"}' in str(w):
                                     message_toast_window_sure.click()
+                                if 'stale element reference: element is not attached to the page document' in str(w):
+                                    pass
+                                if "cannot access local variable 'message_toast_window_sure' where it is not associated with a value" in str(w):
+                                    continue
                                 print(f'查看方式提示弹窗异常信息：{w}')
+
                             time.sleep(5)
                             hide_btn[3].click()
-                            """
-                            查看联系方式提示弹窗
-                            """
-                            time.sleep(5)
-                            try:
-                                message_toast_window = self.d.find_element(By.CLASS_NAME,
-                                                                           profiles_page.profile_toast_window_class)
-                                print("查看联系方式提示弹窗出现")
-                                if message_toast_window:
-                                    message_toast_window_sure = self.d.find_element(By.XPATH, profiles_page.profile_toast_window_sure_xpath)
-                                    message_toast_window_sure.click()
-                                    print("查看联系方式提示弹窗已点击查看")
-                            except Exception as w:
-                                if 'no such element: Unable to locate element: {"method":"css selector","selector":".auxo-modal-body"}' in str(w):
-                                    message_toast_window_sure.click()
-                                print(f'查看方式提示弹窗异常信息：{w}')
                             time.sleep(3)
                             print(message_box.text)
                             print('-' * 30)
@@ -185,7 +176,7 @@ class DarenProfiles():
                                        '网址': self.d.current_url})
 
                 time.sleep(1)
-                print(f"已联系: [ { n - start_index } ]个")
+                print(f"已联系: [ { n } ]个")
                 print("*" * 150)
                 # 关闭窗口
                 self.d.close()
