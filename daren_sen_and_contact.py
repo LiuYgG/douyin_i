@@ -51,12 +51,12 @@ class DarenProfiles():
     def get_daren_info(self):
 
         nicke_name_elements = self.d.find_elements(By.CLASS_NAME, daren_square_page.daren_square_name_class)
-        count = int(input("请输入你要的人数: "))
+        numbers = int(input("请输入你要的人数: "))
         start_index = int(input("请输入要开始的位置："))
         print("开始执行程序")
         # 循环获取
         for n in range(start_index, len(nicke_name_elements)):
-            if n == count:
+            if n - start_index == numbers:
                 print("程序执行完毕")
                 break
             try:
@@ -176,7 +176,7 @@ class DarenProfiles():
                                        '网址': self.d.current_url})
 
                 time.sleep(1)
-                print(f"已联系: [ { n } ]个")
+                print(f"已联系: [ { n - start_index + 1 } ]个")
                 print("*" * 150)
                 # 关闭窗口
                 self.d.close()
