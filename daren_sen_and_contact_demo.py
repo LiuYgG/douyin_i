@@ -1,13 +1,7 @@
 """
-# FileName    : daren_sen_and_contact_demo.py
-# CreateTime  : 2023 年 04 月 22 日
-# Version     : 
-# Description :
-"""
-"""
 # FileName    : daren_sen_and_contact.py
 # CreateTime  : 2023 年 04 月 11 日
-# Version     : 
+# Version     :
 # Description :
 """
 import datetime
@@ -42,7 +36,7 @@ class DarenProfiles():
 
     def run(self):
         self.setup_worksheet()
-        self.get_daren_info(20, 0)
+        self.get_daren_info()
         self.write_to_worksheet()
         self.save_workboot()
 
@@ -54,11 +48,11 @@ class DarenProfiles():
         self.worksheet.cell(row=1, column=3, value='联系方式')
         self.worksheet.cell(row=1, column=4, value='网址')
 
-    def get_daren_info(self, count=0, start_index=0):
+    def get_daren_info(self):
 
         nicke_name_elements = self.d.find_elements(By.CLASS_NAME, daren_square_page.daren_square_name_class)
-        count = count
-        start_index = start_index
+        count = int(input("请输入你要的人数: "))
+        start_index = int(input("请输入要开始的位置："))
         print("开始执行程序")
         # 循环获取
         for n in range(start_index, len(nicke_name_elements)):
@@ -100,39 +94,24 @@ class DarenProfiles():
                             try:
                                 message_toast_window = self.d.find_element(By.CLASS_NAME, profiles_page.profile_toast_window_class)
                                 print("查看联系方式提示弹窗出现")
-                                if message_toast_window:
-                                    # message_toast_window_sure = self.d.find_element(By.XPATH, profiles_page.profile_toast_window_sure_xpath)
-                                    # message_toast_window_sure.click()
-
-                                    message_toast_window_cancel = self.d.find_element(By.XPATH, profiles_page.profile_toast_window_cancel_xpath)
-                                    message_toast_window_cancel.click()
-                                    print("查看联系方式提示弹窗已点击查看")
+                                if message_toast_window < 0:
+                                    continue
+                                    print("无弹窗出现")
                             except Exception as w:
-                                if 'no such element: Unable to locate element: {"method":"css selector","selector":".auxo-modal-body"}' in str(w):
-                                    # message_toast_window_sure.click()
-                                    message_toast_window_cancel.click()
+                                if message_toast_window:
+                                    message_toast_window_sure = self.d.find_element(By.XPATH, profiles_page.profile_toast_window_sure_xpath)
+                                    message_toast_window_sure.click()
+                                    print("查看联系方式提示弹窗已点击查看")
+                                elif 'no such element: Unable to locate element: {"method":"css selector","selector":".auxo-modal-body"}' in str(w):
+                                    message_toast_window_sure.click()
+                                elif 'stale element reference: element is not attached to the page document' in str(w):
+                                    pass
+                                elif "cannot access local variable 'message_toast_window_sure' where it is not associated with a value" in str(w):
+                                    continue
                                 print(f'查看方式提示弹窗异常信息：{w}')
+
                             time.sleep(5)
                             hide_btn[3].click()
-                            """
-                            查看联系方式提示弹窗
-                            """
-                            time.sleep(5)
-                            try:
-                                message_toast_window = self.d.find_element(By.CLASS_NAME,
-                                                                           profiles_page.profile_toast_window_class)
-                                print("查看联系方式提示弹窗出现")
-                                if message_toast_window:
-                                    # message_toast_window_sure = self.d.find_element(By.XPATH, profiles_page.profile_toast_window_sure_xpath)
-                                    # message_toast_window_sure.click()
-                                    message_toast_window_cancel = self.d.find_element(By.XPATH, profiles_page.profile_toast_window_cancel_xpath)
-                                    message_toast_window_cancel.click()
-                                    print("查看联系方式提示弹窗已点击查看")
-                            except Exception as w:
-                                if 'no such element: Unable to locate element: {"method":"css selector","selector":".auxo-modal-body"}' in str(w):
-                                    # message_toast_window_sure.click()
-                                    message_toast_window_cancel.click()
-                                print(f'查看方式提示弹窗异常信息：{w}')
                             time.sleep(3)
                             print(message_box.text)
                             print('-' * 30)
@@ -178,8 +157,7 @@ class DarenProfiles():
                         time.sleep(3)
                         print("已点击添加上次商品")
                         time.sleep(5)
-                        # self.d.find_element(By.XPATH, send_invitation_page.send_invitation_btn_xpath).click()
-                        self.d.find_element(By.XPATH, send_invitation_page.send_cancel_xpath).click()
+                        self.d.find_element(By.XPATH, send_invitation_page.send_invitation_btn_xpath).click()
                         print("已点击发送邀约")
                     else:
                         print(f'发送邀约异常错误信息：{s}')
@@ -199,7 +177,7 @@ class DarenProfiles():
                                        '网址': self.d.current_url})
 
                 time.sleep(1)
-                print(f"已联系: [ { n - start_index } ]个")
+                print(f"已联系: [ { n } ]个")
                 print("*" * 150)
                 # 关闭窗口
                 self.d.close()
@@ -223,7 +201,6 @@ class DarenProfiles():
                 else:
                     print(f'总循环错误信息: {e}')
 
-        return count, start_index
 
     def write_to_worksheet(self):
         # 写入 Excel 表格
@@ -237,7 +214,7 @@ class DarenProfiles():
         # 保存数据
         save_path = f'datas/{time.strftime("%Y-%m-%d")}.xlsx'
         self.workbook.save(save_path)
-        print('数据保存位置: ' + os.path.dirname(save_path))
+        # print('数据保存位置: ' + os.path.dirname(save_path))
 if __name__ == '__main__':
     dd = DarenProfiles()
     dd.run()
