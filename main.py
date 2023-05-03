@@ -147,9 +147,10 @@ class Douyin(QMainWindow):
         try:
             # 重新读取配置文件中的browser_path的值
             self.configs.read(os.path.join('config', 'browser_config.ini'))
-            browser_path = self.configs.get('BROWSERPATH', 'browser_path')
+            browser_path = self.configs.get('BROWSER PATH', 'browser_path')
             if not browser_path:
                 raise ValueError('browser_path not found in browser_config.ini')
+            # 执行命令
             paths = subprocess.run([os.path.join(browser_path, 'chrome.exe'), '--remote-debugging-port=5247'])
             print(paths.stdout)
         except Exception as a:
@@ -158,8 +159,18 @@ class Douyin(QMainWindow):
     # 打开达人信息存储路径
     def open_daren_Path(self):
 
-        paths = os.path.join('datas')
-        os.startfile(paths)
+        try:
+            # 读取配置
+            self.configs.read(os.path.join('config', 'daren_config.ini'))
+            # 获取存储路径
+            datas_path = self.configs.get('DATASTORE', 'daren_info_path')
+            print(datas_path)
+            if not datas_path:
+                raise ValueError('browser_path not found in browser_config.ini')
+            # 打开存储的路径
+            os.startfile(datas_path)
+        except Exception as d:
+            print(d)
 
 
 if __name__ == '__main__':
