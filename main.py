@@ -54,7 +54,7 @@ class Douyin(QMainWindow):
     # 文件路径输入框
     def input_path(self, url_path):
         if url_path:
-            print(f"输入的内容为: {url_path}")
+            print(f"当前的内容为: {url_path}")
             # 输出路径到文本输入框
             self.ui.input_Browser_path.setText(url_path)
             # 缓存路径到配置文件
@@ -63,7 +63,7 @@ class Douyin(QMainWindow):
             with open('config/browser_config.ini', 'w') as configfile:
                 configs.write(configfile)
         else:
-            print("输入内容为空")
+            print("当前内容为空")
 
 
     # 选择文件目录按钮
