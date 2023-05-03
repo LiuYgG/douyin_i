@@ -35,7 +35,7 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="Software_activation">
+    <widget class="QPushButton" name="btn_Software_activation">
      <property name="geometry">
       <rect>
        <x>850</x>
@@ -57,7 +57,7 @@
       <string>软件激活</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="Software_lesson">
+    <widget class="QPushButton" name="btn_Software_lesson">
      <property name="geometry">
       <rect>
        <x>950</x>
@@ -79,7 +79,7 @@
       <string>软件教程</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="Software_update">
+    <widget class="QPushButton" name="btn_Software_update">
      <property name="geometry">
       <rect>
        <x>1050</x>
@@ -101,7 +101,7 @@
       <string>软件更新</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="Software_about">
+    <widget class="QPushButton" name="btn_Software_about">
      <property name="geometry">
       <rect>
        <x>1150</x>
@@ -154,15 +154,15 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QTextEdit" name="Browser_path_text">
+     <widget class="QTextEdit" name="input_Browser_path">
       <property name="enabled">
        <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>10</x>
         <y>8</y>
-        <width>381</width>
+        <width>501</width>
         <height>31</height>
        </rect>
       </property>
@@ -195,12 +195,12 @@
        <string>本地Chrome浏览器安装位置</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="Choose_browser_path">
+     <widget class="QPushButton" name="btn_Choose_browser_path">
       <property name="geometry">
        <rect>
-        <x>410</x>
+        <x>510</x>
         <y>7</y>
-        <width>181</width>
+        <width>101</width>
         <height>33</height>
        </rect>
       </property>
@@ -214,7 +214,7 @@
        <string notr="true"/>
       </property>
       <property name="text">
-       <string>选择已安装浏览器的目录</string>
+       <string>打开浏览器目录</string>
       </property>
      </widget>
     </widget>
@@ -261,7 +261,7 @@
         <string>获取达人数量：</string>
        </property>
       </widget>
-      <widget class="QSpinBox" name="spinBox">
+      <widget class="QSpinBox" name="option_select_daren_numbers">
        <property name="geometry">
         <rect>
          <x>100</x>
@@ -284,7 +284,7 @@
         <string>执行达人位置：</string>
        </property>
       </widget>
-      <widget class="QSpinBox" name="spinBox_2">
+      <widget class="QSpinBox" name="option_daren_daren_start">
        <property name="geometry">
         <rect>
          <x>100</x>
@@ -294,7 +294,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QPushButton" name="Run_script_all">
+      <widget class="QPushButton" name="btn_Run_script_all">
        <property name="geometry">
         <rect>
          <x>500</x>
@@ -316,7 +316,7 @@
         <string>开始执行</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit_2">
+      <widget class="QTextEdit" name="input_daren_save_path">
        <property name="geometry">
         <rect>
          <x>130</x>
@@ -339,7 +339,7 @@
         <string>达人信息存储路径：</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="Choose_daren_path">
+      <widget class="QPushButton" name="btn_Choose_daren_path">
        <property name="geometry">
         <rect>
          <x>450</x>
@@ -454,7 +454,7 @@ p, li { white-space: pre-wrap; }
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="2">
-      <widget class="QPushButton" name="Login_Douke">
+      <widget class="QPushButton" name="btn_Login_Douke">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -480,86 +480,8 @@ p, li { white-space: pre-wrap; }
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="Login_MCN">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>60</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>宋体</family>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string>登录达人机构工作台[电商MCN机构]</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QPushButton" name="Open_browser">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>60</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>宋体</family>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="mouseTracking">
-        <bool>true</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string>运行浏览器</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="Login_commander">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>60</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>宋体</family>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="mouseTracking">
-        <bool>true</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string>登录达人机构工作台[招商团长]</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="2">
-      <widget class="QPushButton" name="Close_browser">
+      <widget class="QPushButton" name="btn_Close_browser">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -586,7 +508,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QPushButton" name="Login_daren_person">
+      <widget class="QPushButton" name="btn_Login_daren_person">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -613,7 +535,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QPushButton" name="Login_business">
+      <widget class="QPushButton" name="btn_Login_business">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -640,7 +562,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QPushButton" name="Open_daren_path">
+      <widget class="QPushButton" name="btn_Open_daren_path">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -663,6 +585,84 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="text">
         <string>打开达人信息存储路径</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="btn_Login_MCN">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>登录达人机构工作台[电商MCN机构]</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="btn_Open_browser">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>运行浏览器</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="btn_Login_commander">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>登录达人机构工作台[招商团长]</string>
        </property>
       </widget>
      </item>
