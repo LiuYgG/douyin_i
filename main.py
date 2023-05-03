@@ -6,10 +6,10 @@ from main_ui import Ui_MainWindow
 import logging
 import configparser
 
-class Example(QMainWindow):
+class Douyin(QMainWindow):
 
     def __init__(self):
-        super(Example, self).__init__()
+        super(Douyin, self).__init__()
         # 创建UI界面实例
         self.ui = Ui_MainWindow()
         # 将UI界面与主窗口相关联
@@ -164,7 +164,7 @@ class Example(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    example = Example()
-    example.show()
-    example.setWindowTitle('抖音达人工具箱')
+    dy = Douyin()
+    dy.show()
+    dy.setWindowTitle('抖音达人工具箱_v-0.0.1')
     sys.exit(app.exec_())
