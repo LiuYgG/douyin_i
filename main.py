@@ -51,7 +51,7 @@ class Douyin(QMainWindow):
     创建组件对象方法
     """
 
-    # 文件路径输入框
+    # 浏览器路径手动输入保存
     def input_path(self, url_path):
         if url_path:
             print(f"当前的内容为: {url_path}")
@@ -66,7 +66,7 @@ class Douyin(QMainWindow):
             print("当前内容为空")
 
 
-    # 选择文件目录按钮
+    # 选择浏览器目录保存
     def btn_Choose_browser_path(self):
 
         try:
