@@ -29,7 +29,7 @@ class Douyin(QMainWindow):
         # 读取配置文件，设置默认路径
         self.configs = configparser.ConfigParser()
         self.configs.read(os.path.join('config', 'browser_config.ini'))
-        self.browser_paths = self.configs.get('BROWSERPATH', 'browser_path')
+        self.browser_paths = self.configs.get('BROWSER PATH', 'browser_path')
         self.ui.input_Browser_path.setText(self.browser_paths)
         self.ui.btn_Choose_browser_path.clicked.connect(self.btn_Choose_browser_path) # 选择浏览器安装目录
 
@@ -40,7 +40,7 @@ class Douyin(QMainWindow):
         # 读取配置文件，设置默认路径
         self.daren_configs = configparser.ConfigParser()
         self.daren_configs.read(os.path.join('config', 'daren_config.ini'))
-        self.daren_paths = self.daren_configs.get('DARENDATAS', 'daren_info_path')
+        self.daren_paths = self.daren_configs.get('DATASTORE', 'daren_info_path')
         self.ui.input_daren_save_path.setText(self.daren_paths)
         """
         底部功能按钮
@@ -59,7 +59,7 @@ class Douyin(QMainWindow):
             self.ui.input_Browser_path.setText(url_path)
             # 缓存路径到配置文件
             configs = configparser.ConfigParser()
-            configs['BROWSERPATH'] = {'browser_path': url_path}
+            configs['BROWSER PATH'] = {'browser_path': url_path}
             with open('config/browser_config.ini', 'w') as configfile:
                 configs.write(configfile)
         else:
@@ -82,7 +82,7 @@ class Douyin(QMainWindow):
                 self.ui.input_Browser_path.setText(selected_directory)
                 # 缓存路径到配置文件
                 configs = configparser.ConfigParser()
-                configs['BROWSERPATH'] = {'browser_path' : selected_directory}
+                configs['BROWSER PATH'] = {'browser_path' : selected_directory}
                 with open('config/browser_config.ini', 'w') as configfile:
                     configs.write(configfile)
 
@@ -102,7 +102,7 @@ class Douyin(QMainWindow):
             datas_path = file_dialog.selectedFiles()[0]
             self.ui.input_daren_save_path.setText(datas_path)
             configs = configparser.ConfigParser()
-            configs['DARENDATAS'] = {'daren_info_path' : datas_path}
+            configs['DATASTORE'] = {'daren_info_path' : datas_path}
             with open('config/daren_config.ini', 'w') as dd:
                 configs.write(dd)
 
