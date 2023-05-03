@@ -29,8 +29,8 @@ class Example(QMainWindow):
         # 读取配置文件，设置默认路径
         self.configs = configparser.ConfigParser()
         self.configs.read(os.path.join('config', 'browser_config.ini'))
-        self.defalut_paths = self.configs.get('BROWSERPATH', 'browser_path')
-        self.ui.input_Browser_path.setText(self.defalut_paths)
+        self.browser_paths = self.configs.get('BROWSERPATH', 'browser_path')
+        self.ui.input_Browser_path.setText(self.browser_paths)
         self.ui.btn_Choose_browser_path.clicked.connect(self.btn_Choose_browser_path) # 选择浏览器安装目录
 
         """
@@ -52,21 +52,19 @@ class Example(QMainWindow):
     """
 
     # 文件路径输入框
-    def input_path(self, url_path=""):
-        pass
-        # if url_path:
-        #     print(f"输入的内容为: {url_path}")
-        #     # 缓存路径到配置文件
-        #     try:
-        #         configs = configparser.ConfigParser()
-        #         configs['DEFAULT'] = {'browser_path': url_path}
-        #         with open('config/browser_config.ini', 'w') as configfile:
-        #             configs.write(configfile)
-        #         self.ui.input_Browser_path.setText(url_path)
-        #     except Exception as i:
-        #         print(i)
-        # else:
-        #     print("输入的内容为空，不写入配置文件")
+    def input_path(self, url_path):
+        if url_path:
+            print(f"输入的内容为: {url_path}")
+            # 输出路径到文本输入框
+            self.ui.input_Browser_path.setText(url_path)
+            # 缓存路径到配置文件
+            configs = configparser.ConfigParser()
+            configs['BROWSERPATH'] = {'browser_path': url_path}
+            with open('config/browser_config.ini', 'w') as configfile:
+                configs.write(configfile)
+        else:
+            print("输入内容为空")
+
 
     # 选择文件目录按钮
     def btn_Choose_browser_path(self):
