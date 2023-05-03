@@ -51,7 +51,7 @@ class DarenProfiles():
     def get_daren_info(self):
 
         nicke_name_elements = self.d.find_elements(By.CLASS_NAME, daren_square_page.daren_square_name_class)
-        numbers = int(input("请输入邀请的人数: "))
+        numbers = int(input("请输入你要的人数: "))
         start_index = int(input("请输入要开始的位置："))
         print("开始执行程序")
         # 循环获取
@@ -94,8 +94,7 @@ class DarenProfiles():
                             try:
                                 message_toast_window = self.d.find_element(By.CLASS_NAME, profiles_page.profile_toast_window_class)
                                 print("查看联系方式提示弹窗出现")
-                                if message_toast_window is None:
-                                    pass
+                                if message_toast_window < 0:
                                     print("无弹窗出现")
                             except Exception as w:
                                 if message_toast_window:
@@ -103,13 +102,13 @@ class DarenProfiles():
                                     message_toast_window_sure.click()
                                     print("查看联系方式提示弹窗已点击查看")
                                 elif 'no such element: Unable to locate element: {"method":"css selector","selector":".auxo-modal-body"}' in str(w):
-                                    time.sleep(3)
                                     message_toast_window_sure.click()
                                 elif 'stale element reference: element is not attached to the page document' in str(w):
                                     pass
                                 elif "cannot access local variable 'message_toast_window_sure' where it is not associated with a value" in str(w):
-                                    pass
-                                # print(f'查看方式提示弹窗异常信息：{w}')
+                                    continue
+                                print(f'查看方式提示弹窗异常信息：{w}')
+
                             time.sleep(5)
                             hide_btn[3].click()
                             time.sleep(3)
@@ -200,6 +199,7 @@ class DarenProfiles():
                     pass
                 else:
                     print(f'总循环错误信息: {e}')
+
 
     def write_to_worksheet(self):
         # 写入 Excel 表格
