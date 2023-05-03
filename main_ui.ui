@@ -154,15 +154,15 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QTextEdit" name="input_Browser_path">
+     <widget class="QTextBrowser" name="input_Browser_path">
       <property name="enabled">
        <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>8</y>
-        <width>501</width>
+        <width>511</width>
         <height>31</height>
        </rect>
       </property>

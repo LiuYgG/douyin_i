@@ -24,15 +24,24 @@ class Example(QMainWindow):
         功能专区：
         """
         # 内容区域组件
+        # self.ui.input_Browser_path = QLineEdit()
         self.ui.input_Browser_path.textChanged.connect(self.input_path) # 输入浏览器路径
         # 读取配置文件，设置默认路径
         self.configs = configparser.ConfigParser()
-        self.configs.read(os.path.join('config', 'config.ini'))
-        self.defalut_paths = self.configs.get('DEFAULT', 'browser_path')
+        self.configs.read(os.path.join('config', 'browser_config.ini'))
+        self.defalut_paths = self.configs.get('BROWSERPATH', 'browser_path')
         self.ui.input_Browser_path.setText(self.defalut_paths)
         self.ui.btn_Choose_browser_path.clicked.connect(self.btn_Choose_browser_path) # 选择浏览器安装目录
 
-
+        """
+        达人信息收集并邀请
+        """
+        self.ui.btn_Choose_daren_path.clicked.connect(self.daren_datas_path) # 选择存储目录
+        # 读取配置文件，设置默认路径
+        self.daren_configs = configparser.ConfigParser()
+        self.daren_configs.read(os.path.join('config', 'daren_config.ini'))
+        self.daren_paths = self.daren_configs.get('DARENDATAS', 'daren_info_path')
+        self.ui.input_daren_save_path.setText(self.daren_paths)
         """
         底部功能按钮
         """
@@ -43,21 +52,21 @@ class Example(QMainWindow):
     """
 
     # 文件路径输入框
-    def input_path(self, defalut_paths=""):
-
-        if defalut_paths:
-            print(f'输入的内容为: {defalut_paths}')
-
-            # 缓存路径到配置文件
-            try:
-                configs = configparser.ConfigParser()
-                configs['DEFAULT'] = {'browser_path': defalut_paths}
-                with open('config/config.ini', 'w') as configfile:
-                    configs.write(configfile)
-            except Exception as i:
-                print(i)
-        else:
-            print("输入的内容为空，不写入配置文件。")
+    def input_path(self, url_path=""):
+        pass
+        # if url_path:
+        #     print(f"输入的内容为: {url_path}")
+        #     # 缓存路径到配置文件
+        #     try:
+        #         configs = configparser.ConfigParser()
+        #         configs['DEFAULT'] = {'browser_path': url_path}
+        #         with open('config/browser_config.ini', 'w') as configfile:
+        #             configs.write(configfile)
+        #         self.ui.input_Browser_path.setText(url_path)
+        #     except Exception as i:
+        #         print(i)
+        # else:
+        #     print("输入的内容为空，不写入配置文件")
 
     # 选择文件目录按钮
     def btn_Choose_browser_path(self):
@@ -75,12 +84,29 @@ class Example(QMainWindow):
                 self.ui.input_Browser_path.setText(selected_directory)
                 # 缓存路径到配置文件
                 configs = configparser.ConfigParser()
-                configs['DEFAULT'] = {'browser_path' : selected_directory}
-                with open('config/config.ini', 'w') as configfile:
+                configs['BROWSERPATH'] = {'browser_path' : selected_directory}
+                with open('config/browser_config.ini', 'w') as configfile:
                     configs.write(configfile)
 
         except Exception as e:
             logging.exception(e)
+
+    # 选择达人存储目录
+    def daren_datas_path(self):
+
+        # 创建文件对话框
+        file_dialog = QFileDialog()
+        # 设置对话框只显示目录
+        file_dialog.setFileMode(QFileDialog.DirectoryOnly)
+        # 显示对话框，等待用户选择
+        if file_dialog.exec_() == QFileDialog.Accepted:
+            # 获取用户选择的文件夹路径
+            datas_path = file_dialog.selectedFiles()[0]
+            self.ui.input_daren_save_path.setText(datas_path)
+            configs = configparser.ConfigParser()
+            configs['DARENDATAS'] = {'daren_info_path' : datas_path}
+            with open('config/daren_config.ini', 'w') as dd:
+                configs.write(dd)
 
     # 软件激活按钮
     def activation_software(self):
@@ -122,10 +148,10 @@ class Example(QMainWindow):
     def run_browser_btn(self):
         try:
             # 重新读取配置文件中的browser_path的值
-            self.configs.read(os.path.join('config', 'config.ini'))
-            browser_path = self.configs.get('DEFAULT', 'browser_path')
+            self.configs.read(os.path.join('config', 'browser_config.ini'))
+            browser_path = self.configs.get('BROWSERPATH', 'browser_path')
             if not browser_path:
-                raise ValueError('browser_path not found in config.ini')
+                raise ValueError('browser_path not found in browser_config.ini')
             paths = subprocess.run([os.path.join(browser_path, 'chrome.exe'), '--remote-debugging-port=5247'])
             print(paths.stdout)
         except Exception as a:
